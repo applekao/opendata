@@ -1,0 +1,89 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Demo: Making a bar chart with SVG</title>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <style type="text/css">
+      /* No style rules here yet */   
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      //Width and height
+      var w = 500;
+      var h = 100;
+      var barPadding = 1;
+      
+      var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+              11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+
+      console.log(dataset);
+      
+      //Create SVG element
+      var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+      svg.selectAll("rect")
+         .data(dataset)
+         .enter()
+         .append("rect")
+         .attr("x", function(d, i) {
+            return i * (w / dataset.length);
+         })
+         .attr("y", function(d) {
+            return h - (d * 4);
+         })
+         .attr("width", w / dataset.length - barPadding)
+         .attr("height", function(d) {
+            return d * 4;
+         })
+         .attr("fill", "teal");
+         ;
+      
+    </script>
+  </body>
+</html>
+
+<!--<style>
+
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+
+}
+</style> -->
+
+<!-- <svg class="chart" width="500" height="500">
+  <g transform="translate(0,460)">
+    <rect width="19" height="40"></rect>
+    <text x="9.5" y="37" dy=".35em">4</text>
+  </g>
+  <g transform="translate(20,420)">
+    <rect width="19" height="80"></rect>
+    <text x="9.5" y="77" dy=".35em">8</text>
+  </g>
+  <g transform="translate(40,0)">
+    <rect width="19" height="150"></rect>
+    <text x="9.5" y="147" dy=".35em">15</text>
+  </g>
+  <g transform="translate(60,0)">
+    <rect width="19" height="160"></rect>
+    <text x="157" y="157" dy=".35em">16</text>
+  </g>
+  <g transform="translate(80,0)">
+    <rect width="19" height="230"></rect>
+    <text x="227" y="227" dy=".35em">23</text>
+  </g>
+  <g transform="translate(100,0)">
+    <rect width="19" height="420"></rect>
+    <text x="417" y="417" dy=".35em">42</text>
+  </g>
+</svg> -->
